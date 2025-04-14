@@ -3,19 +3,21 @@ import {
   PieChart,
   Pie,
   Cell,
-  Tooltip,
   ResponsiveContainer,
+  Tooltip,
   Legend,
 } from "recharts";
 
-const categoryData = [
-  { name: "Electronics", value: 4500 },
-  { name: "Clothing", value: 3200 },
-  { name: "Home & Garden", value: 2800 },
-  { name: "Books", value: 2100 },
-  { name: "Sports & Outdoors", value: 1900 },
+const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042", "#0088FE"];
+
+const userDemographicsData = [
+  { name: "18-24", value: 20 },
+  { name: "25-34", value: 30 },
+  { name: "35-44", value: 25 },
+  { name: "45-54", value: 15 },
+  { name: "55+", value: 10 },
 ];
-const CategoryDistributionChart = () => {
+const UserDemographicsChart = () => {
   return (
     <motion.div
       className="bg-gray bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700"
@@ -24,25 +26,26 @@ const CategoryDistributionChart = () => {
       transition={{ delay: 0.5 }}
     >
       <h2 className="text-lg font-medium mb-4 text-gray-100">
-        Category Distribution
+        User Demographics Chart
       </h2>
       <div className="h-80">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
-              data={categoryData}
+              data={userDemographicsData}
               dataKey="value"
               nameKey="name"
               cx="50%"
               cy="50%"
-            //   innerRadius="40%"
+              //   innerRadius="40%"
               outerRadius="80%"
               fill="#8884d8"
-            //   paddingAngle={5}
-            // labelLine={false}
-              label ={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+              //   paddingAngle={5}
+              label={({ name, percent }) =>
+                `${name} ${(percent * 100).toFixed(0)}%`
+              }
             >
-              {categoryData.map((entry, index) => (
+              {userDemographicsData.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={`#${Math.floor(Math.random() * 16777215).toString(16)}`}
@@ -63,4 +66,5 @@ const CategoryDistributionChart = () => {
     </motion.div>
   );
 };
-export default CategoryDistributionChart;
+
+export default UserDemographicsChart;
